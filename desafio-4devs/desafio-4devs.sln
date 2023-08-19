@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "desafio-4devs", "desafio-4devs\desafio-4devs.csproj", "{F51F9E5B-16FF-4A70-89EE-F263C75DF89A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "desafio-4devs-api", "desafio-4devs\desafio-4devs-api.csproj", "{F51F9E5B-16FF-4A70-89EE-F263C75DF89A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{0EBF6531-4E55-429C-9C0A-DD1965EF6A24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{401BD5CE-4C3A-4969-A50A-0B995D038CBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infra", "2 - Infra", "{70C4A46E-0C03-4DA9-923E-202249C262C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "desafio-4devs-domain", "desafio-4devs-domain\desafio-4devs-domain.csproj", "{0369791B-2EDA-4390-8D3B-1EA295007B3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "desafio-4devs-entity", "desafio-4devs-entity\desafio-4devs-entity.csproj", "{C4067D1C-0883-4D16-8BBE-B61F803C6A40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,22 @@ Global
 		{F51F9E5B-16FF-4A70-89EE-F263C75DF89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F51F9E5B-16FF-4A70-89EE-F263C75DF89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F51F9E5B-16FF-4A70-89EE-F263C75DF89A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0369791B-2EDA-4390-8D3B-1EA295007B3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0369791B-2EDA-4390-8D3B-1EA295007B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0369791B-2EDA-4390-8D3B-1EA295007B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0369791B-2EDA-4390-8D3B-1EA295007B3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4067D1C-0883-4D16-8BBE-B61F803C6A40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4067D1C-0883-4D16-8BBE-B61F803C6A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4067D1C-0883-4D16-8BBE-B61F803C6A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4067D1C-0883-4D16-8BBE-B61F803C6A40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F51F9E5B-16FF-4A70-89EE-F263C75DF89A} = {0EBF6531-4E55-429C-9C0A-DD1965EF6A24}
+		{0369791B-2EDA-4390-8D3B-1EA295007B3E} = {401BD5CE-4C3A-4969-A50A-0B995D038CBC}
+		{C4067D1C-0883-4D16-8BBE-B61F803C6A40} = {70C4A46E-0C03-4DA9-923E-202249C262C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {55F73547-946A-46C9-8533-27DA582EC56E}
