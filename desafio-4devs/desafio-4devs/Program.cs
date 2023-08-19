@@ -1,5 +1,6 @@
-using desafio_4devs_entity;
+using desafio_4devs.UseCasses.Users;
 using desafio_4devs_entity.Context;
+using desafio_4devs_entity.Ioc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddEntityConfiguration(builder.Configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(typeof(UsersBaseHandler).Assembly));
 
 var app = builder.Build();
 
