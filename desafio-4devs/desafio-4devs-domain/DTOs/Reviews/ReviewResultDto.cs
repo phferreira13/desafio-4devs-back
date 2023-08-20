@@ -1,4 +1,5 @@
 ﻿using desafio_4devs_domain.Enums;
+using desafio_4devs_domain.Extensions;
 using desafio_4devs_domain.Models;
 
 namespace desafio_4devs_domain.DTOs.Reviews
@@ -20,6 +21,7 @@ namespace desafio_4devs_domain.DTOs.Reviews
                         : ENpsResultColor.Red; 
             } 
         }
+        public string ResultColorDescription { get { return ResultColor.GetDescription(); } }
 
         public ReviewResultDto(List<Review> reviews)
         {

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace desafio_4devs.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ReviewController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,7 +24,7 @@ namespace desafio_4devs.Controllers
             return Ok(result);
         }
 
-        [HttpPost()]
+        [HttpPost]
         [ProducesResponseType(typeof(ReviewsAddResponse), 200)]
         public async Task<IActionResult> Add([FromBody] ReviewsAddCommand command)
         {
