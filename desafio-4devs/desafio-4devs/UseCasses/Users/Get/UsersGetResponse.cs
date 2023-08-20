@@ -2,13 +2,18 @@
 
 namespace desafio_4devs.UseCasses.Users.Get
 {
-    public class UsersGetResponse : UsersBaseResponse
+    public class UsersGetResponse
+    {
+        public required IEnumerable<UserResponse> Users { get; set; }
+    }
+
+    public class UserResponse : UsersBaseResponse
     {
         public int Id { get; set; }
 
-        public static implicit operator UsersGetResponse(User user)
+        public static implicit operator UserResponse(User user)
         {
-            return new UsersGetResponse
+            return new UserResponse
             {
                 Id = user.Id,
                 Name = user.Name,

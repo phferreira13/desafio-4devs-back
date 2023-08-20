@@ -2,7 +2,7 @@
 
 namespace desafio_4devs.UseCasses.Users.Get
 {
-    public class UsersGetQuery : IRequest<IEnumerable<UsersGetResponse>>
+    public class UsersGetQuery : IRequest<UsersGetResponse>
     {
     }
 }

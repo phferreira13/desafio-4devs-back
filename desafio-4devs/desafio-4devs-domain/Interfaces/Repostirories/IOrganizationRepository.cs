@@ -3,8 +3,8 @@ using desafio_4devs_domain.Models;
 
 namespace desafio_4devs_domain.Interfaces.Repostirories
 {
-    public interface IUserRepository : IBaseCrudRepository<User>
+    public interface IOrganizationRepository : IBaseCrudRepository<Organization>
     {
-        Task<User> Get(string email);
+        Task<List<Organization>> GetByName(string name);
     }
 }

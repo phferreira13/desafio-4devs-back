@@ -2,10 +2,10 @@
 
 namespace desafio_4devs_domain.Models
 {
-    public class User : BaseEntityModel
+    public class Organization : BaseEntityModel
     {
         public required string Name { get; set; }
-        public required string Email { get; set; }
-        public required string Password { get; set; }
+        public required string ContactName { get; set; }
+        public string? Cnpj { get; set; }
     }
 }
