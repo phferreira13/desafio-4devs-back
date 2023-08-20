@@ -10,8 +10,8 @@ namespace desafio_4devs_entity.Repositories.Base
 {
     public abstract class BaseCrudRepository<T> : IBaseCrudRepository<T> where T : BaseEntityModel
     {
-        private readonly App4DevsContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly App4DevsContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         public BaseCrudRepository(App4DevsContext context)
         {
@@ -19,7 +19,7 @@ namespace desafio_4devs_entity.Repositories.Base
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<T> Create(T entity)
+        public virtual async Task<T> Create(T entity)
         {
             entity.CreatedAt = DateTime.Now;
             await _dbSet.AddAsync(entity);
@@ -27,25 +27,25 @@ namespace desafio_4devs_entity.Repositories.Base
             return entity;
         }
 
-        public async Task<T> Delete(T entity)
+        public virtual async Task<T> Delete(T entity)
         {
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
 
-        public async Task<T> Get(int id)
+        public virtual async Task<T> Get(int id)
         {
             var result = await _dbSet.FirstOrDefaultAsync(u => u.Id == id);
             return result ?? throw new Exception(EEntityExceptions.EntityNotFound.GetDescription());
         }
 
-        public async Task<List<T>> Get()
+        public virtual async Task<List<T>> Get()
         {
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T> Update(T entity)
+        public virtual async Task<T> Update(T entity)
         {
             var entityDb = _dbSet.FirstOrDefault(u => u.Id == entity.Id);
             if (entityDb == null) throw new Exception(EEntityExceptions.EntityNotFound.GetDescription());

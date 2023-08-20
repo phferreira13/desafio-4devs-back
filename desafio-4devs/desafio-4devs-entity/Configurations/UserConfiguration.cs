@@ -15,6 +15,7 @@ namespace desafio_4devs_entity.Configurations
             builder.Property(u => u.CreatedAt).IsRequired().HasDefaultValue(DateTime.Now);
             builder.Property(u => u.UpdatedAt);
             builder.HasKey(u => u.Id);
+            builder.HasMany(u => u.Reviews).WithOne(r => r.User).HasForeignKey(r => r.UserId);
         }
     }
 }

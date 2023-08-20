@@ -11,6 +11,7 @@ namespace desafio_4devs_entity.Ioc
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
             return services;
         }

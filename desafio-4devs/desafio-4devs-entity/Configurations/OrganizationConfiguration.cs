@@ -13,6 +13,7 @@ namespace desafio_4devs_entity.Configurations
             builder.Property(o => o.ContactName).IsRequired();
             builder.Property(o => o.CreatedAt).IsRequired().HasDefaultValue(DateTime.Now);
             builder.Property(o => o.UpdatedAt);
+            builder.HasMany(o => o.Reviews).WithOne(r => r.Organization).HasForeignKey(r => r.OrganizationId);
         }
     }
 }
