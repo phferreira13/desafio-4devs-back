@@ -2,7 +2,7 @@
 
 namespace desafio_4devs.UseCasses.Users
 {
-    public class UsersBaseHandler
+    public abstract class UsersBaseHandler
     {
         protected readonly IUserRepository userRepository;
 

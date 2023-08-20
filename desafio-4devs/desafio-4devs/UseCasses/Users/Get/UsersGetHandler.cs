@@ -3,16 +3,16 @@ using MediatR;
 
 namespace desafio_4devs.UseCasses.Users.Get
 {
-    public class UsersGetHandler : UsersBaseHandler, IRequestHandler<UsersGetQuery, IEnumerable<UsersGetResponse>>
+    public class UsersGetHandler : UsersBaseHandler, IRequestHandler<UsersGetQuery, UsersGetResponse>
     {
         public UsersGetHandler(IUserRepository userRepository) : base(userRepository)
         {
         }
 
-        public async Task<IEnumerable<UsersGetResponse>> Handle(UsersGetQuery request, CancellationToken cancellationToken)
+        public async Task<UsersGetResponse> Handle(UsersGetQuery request, CancellationToken cancellationToken)
         {
             var users = await userRepository.Get();
-            return users.ConvertAll<UsersGetResponse>(user => user);
+            return new UsersGetResponse { Users = users.ConvertAll<UserResponse>(user => user) };
         }
     }
 }

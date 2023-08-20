@@ -5,6 +5,7 @@ namespace desafio_4devs.UseCasses.Users.Add
     public class UsersAddResponse : UsersBaseResponse
     {
         public int Id { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public static implicit operator UsersAddResponse(User user)
         {
@@ -13,7 +14,8 @@ namespace desafio_4devs.UseCasses.Users.Add
                 Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
-                Password = user.Password
+                Password = user.Password,
+                CreatedAt = user.CreatedAt
             };
         }
     }

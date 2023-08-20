@@ -6,6 +6,7 @@ namespace desafio_4devs_entity.Context
     public class App4DevsContext: DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
         public App4DevsContext(DbContextOptions<App4DevsContext> options) : base(options)
         {
         }
