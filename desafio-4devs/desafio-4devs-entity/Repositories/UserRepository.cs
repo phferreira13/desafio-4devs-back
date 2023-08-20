@@ -10,25 +10,23 @@ namespace desafio_4devs_entity.Repositories
 {
     public class UserRepository : BaseCrudRepository<User>, IUserRepository
     {
-        private readonly App4DevsContext _context;
-        private readonly DbSet<User> _dbSet;
         
         public UserRepository(App4DevsContext context) : base(context)
         {
-            _context = context;
-            _dbSet = _context.Set<User>();
         }
 
-        public async Task<User> Get(string email)
+        public async Task<User?> Get(string email)
         {
-            var result = await _dbSet.FirstOrDefaultAsync(u => u.Email == email);
-            return result ?? throw new Exception(EUserException.UserNotGettedByEmail.GetDescription());
+            var result = await _dbSet
+                .Include(o => o.Reviews)
+                .FirstOrDefaultAsync(u => u.Email == email);
+            return result;
         }
 
         public new async Task<User> Update(User user)
         {
             var userDb = _dbSet.FirstOrDefault(u => u.Id == user.Id);
-            if (userDb == null) throw new Exception("Usuário não encontrado.");
+            if (userDb == null) throw new Exception(EUserException.UserNotFound.GetDescription());
             userDb.Name = user.Name;
             userDb.Email = user.Email;
             userDb.Password = user.Password;
