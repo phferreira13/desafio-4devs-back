@@ -5,6 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Configure CORS
+var AllowLocalhost = "AllowLocalhost";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowLocalhost,
+        policy => policy
+            //.WithOrigins("http://localhost:4200", "https://localhost:4200")
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -15,6 +27,10 @@ builder.Services.AddEntityConfiguration(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(typeof(UsersBaseHandler).Assembly));
+
+
+
+
 
 var app = builder.Build();
 
@@ -33,6 +49,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseCors(AllowLocalhost);
 
 app.UseAuthorization();
 
