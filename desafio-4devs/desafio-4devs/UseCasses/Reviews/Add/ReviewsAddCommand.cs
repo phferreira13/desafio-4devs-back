@@ -19,14 +19,15 @@ namespace desafio_4devs.UseCasses.Reviews.Add
                 ReferenceYear = ReferenceYear,
                 Comment = organizationReview.Comment,
                 Rating = organizationReview.Rating,
-                OrganizationId = organizationReview.OrganizationId
+                OrganizationId = organizationReview.Id,
+                CreatedAt = DateTime.Now
             }).ToList();
         }
     }
 
     public class OrganizationReviewAddCommand
     {
-        public required int OrganizationId { get; set; }
+        public required int Id { get; set; }
         public required string Comment { get; set; }
         public int Rating { get; set; }
     }

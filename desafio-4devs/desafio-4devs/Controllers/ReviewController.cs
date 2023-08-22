@@ -1,4 +1,5 @@
 ﻿using desafio_4devs.UseCasses.Reviews.Add;
+using desafio_4devs.UseCasses.Reviews.Get;
 using desafio_4devs.UseCasses.Reviews.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace desafio_4devs.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/review")]
     public class ReviewController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -14,7 +15,15 @@ namespace desafio_4devs.Controllers
         public ReviewController(IMediator mediator)
         {
             _mediator = mediator;
-        }       
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(ReviewsGetResponse), 200)]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _mediator.Send(new ReviewsGetQuery());
+            return Ok(result);
+        }
 
         [HttpGet("get-result")]
         [ProducesResponseType(typeof(ReviewsResultResponse), 200)]
@@ -28,8 +37,15 @@ namespace desafio_4devs.Controllers
         [ProducesResponseType(typeof(ReviewsAddResponse), 200)]
         public async Task<IActionResult> Add([FromBody] ReviewsAddCommand command)
         {
-            var result = await _mediator.Send(command);
-            return Ok(result);
+            try
+            {
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

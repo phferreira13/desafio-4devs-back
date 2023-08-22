@@ -35,5 +35,12 @@ namespace desafio_4devs_entity.Repositories
             await _context.SaveChangesAsync();
             return userDb;
         }
+
+        public async Task<User?> Get(string email, string password)
+        {
+            var result = await _dbSet
+                .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+            return result;
+        }
     }
 }

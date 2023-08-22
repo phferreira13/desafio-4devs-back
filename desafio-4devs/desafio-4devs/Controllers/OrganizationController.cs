@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace desafio_4devs.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/organization")]
     public class OrganizationController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -18,7 +18,7 @@ namespace desafio_4devs.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<OrganizationsGetResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OrganizationsGetResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {
             var organizations = await mediator.Send(new OrganizationsGetQuery());
@@ -29,12 +29,19 @@ namespace desafio_4devs.Controllers
         [ProducesResponseType(typeof(OrganizationsAddResponse), StatusCodes.Status201Created)]
         public async Task<IActionResult> Post([FromBody] OrganizationsAddCommand command)
         {
-            var organization = await mediator.Send(command);
-            return CreatedAtAction(nameof(Get), new { id = organization.Id }, organization);
+            try
+            {
+                var organization = await mediator.Send(command);
+                return CreatedAtAction(nameof(Get), new { id = organization.Id }, organization);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("get-by-name")]
-        [ProducesResponseType(typeof(IEnumerable<OrganizationsGetByNameResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OrganizationsGetByNameResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByName([FromQuery] OrganizationsGetByNameQuery query)
         {
             var organizations = await mediator.Send(query);

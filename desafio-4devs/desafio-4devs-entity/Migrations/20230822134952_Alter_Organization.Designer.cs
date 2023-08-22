@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using desafio_4devs_entity.Context;
 
@@ -11,9 +12,11 @@ using desafio_4devs_entity.Context;
 namespace desafio_4devs_entity.Migrations
 {
     [DbContext(typeof(App4DevsContext))]
-    partial class App4DevsContextModelSnapshot : ModelSnapshot
+    [Migration("20230822134952_Alter_Organization")]
+    partial class Alter_Organization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +43,7 @@ namespace desafio_4devs_entity.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 22, 11, 48, 54, 573, DateTimeKind.Local).AddTicks(1433));
+                        .HasDefaultValue(new DateTime(2023, 8, 22, 10, 49, 52, 737, DateTimeKind.Local).AddTicks(8106));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -67,9 +70,7 @@ namespace desafio_4devs_entity.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 22, 11, 48, 54, 573, DateTimeKind.Local).AddTicks(5803));
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("OrganizationId")
                         .HasColumnType("int");
@@ -115,7 +116,7 @@ namespace desafio_4devs_entity.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 8, 22, 11, 48, 54, 574, DateTimeKind.Local).AddTicks(223));
+                        .HasDefaultValue(new DateTime(2023, 8, 22, 10, 49, 52, 738, DateTimeKind.Local).AddTicks(6602));
 
                     b.Property<string>("Email")
                         .IsRequired()

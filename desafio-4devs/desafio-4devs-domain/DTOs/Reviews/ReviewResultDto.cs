@@ -6,6 +6,8 @@ namespace desafio_4devs_domain.DTOs.Reviews
 {
     public class ReviewResultDto
     {
+        public string ReferenceMonth { get; set; }
+        public string ReferenceYear { get; set; }
         public int Promoters { get; set; }
         public int Neutrals { get; set; }
         public int Detractors { get; set; }
@@ -25,6 +27,8 @@ namespace desafio_4devs_domain.DTOs.Reviews
 
         public ReviewResultDto(List<Review> reviews)
         {
+            ReferenceMonth = reviews.First().ReferenceMonth;
+            ReferenceYear = reviews.First().ReferenceYear;
             Promoters = reviews.Where(r => r.Rating >= 9).Count();
             Neutrals = reviews.Where(r => r.Rating >= 7 && r.Rating <= 8).Count();
             Detractors = reviews.Where(r => r.Rating <= 6).Count();

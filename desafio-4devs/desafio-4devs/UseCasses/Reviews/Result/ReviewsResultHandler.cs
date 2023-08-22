@@ -1,4 +1,5 @@
-﻿using desafio_4devs_domain.Interfaces.Repostirories;
+﻿using desafio_4devs.UseCasses.Reviews.Get;
+using desafio_4devs_domain.Interfaces.Repostirories;
 using MediatR;
 
 namespace desafio_4devs.UseCasses.Reviews.Result
@@ -12,7 +13,10 @@ namespace desafio_4devs.UseCasses.Reviews.Result
         public async Task<ReviewsResultResponse> Handle(ReviewsResultQuery request, CancellationToken cancellationToken)
         {
             var reviews = await _repository.GetReviewResult(request.ReferenceMonth, request.ReferenceYear);
-            return new ReviewsResultResponse { ReviewResult = reviews };
+            return new ReviewsResultResponse
+            {
+                ReviewResults = reviews
+            };
         }
     }
 }
