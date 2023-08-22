@@ -51,6 +51,17 @@ namespace desafio_4devs_entity.Repositories
 
         public async Task<IEnumerable<Review>> AddReviews(IEnumerable<Review> reviews)
         {
+            foreach (var review in reviews)
+            {
+                var reviewExists = await _dbSet.AnyAsync(r => r.OrganizationId == review.OrganizationId && 
+                    r.UserId == review.UserId &&
+                    r.ReferenceYear == review.ReferenceYear &&
+                    r.ReferenceMonth == review.ReferenceMonth);
+                if (reviewExists)
+                {
+                    throw new Exception("Já existe uma avaliação para esta organização e usuário");
+                }
+            }
             await _dbSet.AddRangeAsync(reviews);
             await _context.SaveChangesAsync();
             return reviews;

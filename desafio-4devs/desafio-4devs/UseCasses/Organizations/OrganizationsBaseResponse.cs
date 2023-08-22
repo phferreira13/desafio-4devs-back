@@ -28,6 +28,16 @@ namespace desafio_4devs.UseCasses.Organizations
                 return EOrganizationCategoryReview.Neutral;
             return EOrganizationCategoryReview.Detractor;
         }
+
+        public DateTime? LastReviewDate 
+        { 
+            get 
+            { 
+                return !Reviews.Any() 
+                    ? null
+                    : Reviews.OrderByDescending(r => r.CreatedAt).First().CreatedAt;
+            } 
+        }
     }
 
     public class OrganizationReviewBaseResponse

@@ -29,6 +29,7 @@ namespace desafio_4devs_entity.Repositories
 
         public async Task<List<Organization>> GetOrganizationsWithReviews()
         {
+            //return must be ordered by reviews created at
             return await _dbSet
                 .Include(o => o.Reviews)
                 .ToListAsync();

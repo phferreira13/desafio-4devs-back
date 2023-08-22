@@ -29,8 +29,15 @@ namespace desafio_4devs.Controllers
         [ProducesResponseType(typeof(OrganizationsAddResponse), StatusCodes.Status201Created)]
         public async Task<IActionResult> Post([FromBody] OrganizationsAddCommand command)
         {
-            var organization = await mediator.Send(command);
-            return CreatedAtAction(nameof(Get), new { id = organization.Id }, organization);
+            try
+            {
+                var organization = await mediator.Send(command);
+                return CreatedAtAction(nameof(Get), new { id = organization.Id }, organization);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("get-by-name")]

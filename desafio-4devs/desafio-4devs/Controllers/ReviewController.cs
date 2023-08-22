@@ -37,8 +37,15 @@ namespace desafio_4devs.Controllers
         [ProducesResponseType(typeof(ReviewsAddResponse), 200)]
         public async Task<IActionResult> Add([FromBody] ReviewsAddCommand command)
         {
-            var result = await _mediator.Send(command);
-            return Ok(result);
+            try
+            {
+                var result = await _mediator.Send(command);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
