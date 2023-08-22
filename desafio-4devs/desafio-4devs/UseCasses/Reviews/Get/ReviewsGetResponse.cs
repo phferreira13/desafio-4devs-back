@@ -1,9 +1,8 @@
 ﻿using desafio_4devs_domain.DTOs.Reviews;
-using desafio_4devs_domain.Models;
 
-namespace desafio_4devs.UseCasses.Reviews.Result
+namespace desafio_4devs.UseCasses.Reviews.Get
 {
-    public class ReviewsResultResponse
+    public class ReviewsGetResponse
     {
         public required IEnumerable<ReviewResultDto> ReviewResults { get; set; }
     }

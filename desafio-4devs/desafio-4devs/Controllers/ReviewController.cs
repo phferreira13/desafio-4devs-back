@@ -1,4 +1,5 @@
 ﻿using desafio_4devs.UseCasses.Reviews.Add;
+using desafio_4devs.UseCasses.Reviews.Get;
 using desafio_4devs.UseCasses.Reviews.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,15 @@ namespace desafio_4devs.Controllers
         public ReviewController(IMediator mediator)
         {
             _mediator = mediator;
-        }       
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(ReviewsGetResponse), 200)]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _mediator.Send(new ReviewsGetQuery());
+            return Ok(result);
+        }
 
         [HttpGet("get-result")]
         [ProducesResponseType(typeof(ReviewsResultResponse), 200)]

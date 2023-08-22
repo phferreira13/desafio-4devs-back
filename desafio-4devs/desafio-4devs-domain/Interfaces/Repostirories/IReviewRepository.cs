@@ -9,7 +9,8 @@ namespace desafio_4devs_domain.Interfaces.Repostirories
         Task<IEnumerable<Review>> GetByOrganizationId(int organizationId);
         Task<IEnumerable<Review>> GetByUserId(int userId);
         Task<IEnumerable<Review>> GetByOrganizationIdAndUserId(int organizationId, int userId);
-        Task<ReviewResultDto> GetReviewResult(string referenceMonth, string referenceYear);
+        Task<IEnumerable<ReviewResultDto>> GetReviewResult(string referenceMonth, string referenceYear);
         Task<IEnumerable<Review>> AddReviews(IEnumerable<Review> reviews);
+        Task<IEnumerable<ReviewResultDto>> GetReviewResult();
     }
 }
