@@ -5,6 +5,7 @@ using desafio_4devs_domain.Models;
 using desafio_4devs_entity.Context;
 using desafio_4devs_entity.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace desafio_4devs_entity.Repositories
 {
@@ -16,13 +17,21 @@ namespace desafio_4devs_entity.Repositories
 
         public override async Task<Organization> Create(Organization organization)
         {
-            if(await _dbSet.AnyAsync(o => o.Cnpj == organization.Cnpj))
+            if((organization.Cnpj != null) && 
+                (await _dbSet.AnyAsync(o => o.Cnpj == organization.Cnpj)))
                 throw new Exception(EOrganizationExceptions.OrganizationAlreadyExists.GetDescription());
 
             organization.CreatedAt = DateTime.Now;
             await _dbSet.AddAsync(organization);
             await _context.SaveChangesAsync();
             return organization;
+        }
+
+        public async Task<List<Organization>> GetOrganizationsWithReviews()
+        {
+            return await _dbSet
+                .Include(o => o.Reviews)
+                .ToListAsync();
         }
 
         public async Task<List<Organization>> GetByName(string name)

@@ -11,7 +11,7 @@ namespace desafio_4devs.UseCasses.Organizations.Get
 
         public async Task<OrganizationsGetResponse> Handle(OrganizationsGetQuery request, CancellationToken cancellationToken)
         {
-            var list = await organizationRepository.Get();
+            var list = await organizationRepository.GetOrganizationsWithReviews();
             return new OrganizationsGetResponse { Organizations = list.ConvertAll<OrganizationResponse>(organization => organization) };
         }
     }

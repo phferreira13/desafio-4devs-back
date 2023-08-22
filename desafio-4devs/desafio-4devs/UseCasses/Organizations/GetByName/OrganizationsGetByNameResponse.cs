@@ -22,7 +22,8 @@ namespace desafio_4devs.UseCasses.Organizations.GetByName
                 ContactName = organization.ContactName,
                 Cnpj = organization.Cnpj,
                 CreatedAt = organization.CreatedAt,
-                UpdatedAt = organization.UpdatedAt
+                UpdatedAt = organization.UpdatedAt,
+                Reviews = organization.Reviews?.ToList().ConvertAll<OrganizationReviewBaseResponse>(r => r)
             };
         }
     }
