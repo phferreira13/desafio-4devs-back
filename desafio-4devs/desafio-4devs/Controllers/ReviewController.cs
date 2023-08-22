@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace desafio_4devs.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/review")]
     public class ReviewController : ControllerBase
     {
         private readonly IMediator _mediator;

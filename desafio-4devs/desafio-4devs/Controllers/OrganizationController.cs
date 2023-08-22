@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace desafio_4devs.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/organization")]
     public class OrganizationController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -18,7 +18,7 @@ namespace desafio_4devs.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<OrganizationsGetResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OrganizationsGetResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {
             var organizations = await mediator.Send(new OrganizationsGetQuery());
@@ -34,7 +34,7 @@ namespace desafio_4devs.Controllers
         }
 
         [HttpGet("get-by-name")]
-        [ProducesResponseType(typeof(IEnumerable<OrganizationsGetByNameResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OrganizationsGetByNameResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByName([FromQuery] OrganizationsGetByNameQuery query)
         {
             var organizations = await mediator.Send(query);

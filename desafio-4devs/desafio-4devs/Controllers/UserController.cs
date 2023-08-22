@@ -1,12 +1,13 @@
 ﻿using desafio_4devs.UseCasses.Users.Add;
 using desafio_4devs.UseCasses.Users.Get;
+using desafio_4devs.UseCasses.Users.Login;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace desafio_4devs.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/user")]
     public class UserController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -17,7 +18,7 @@ namespace desafio_4devs.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<UsersGetResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(UsersGetResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {
             var users = await mediator.Send(new UsersGetQuery());
@@ -30,6 +31,14 @@ namespace desafio_4devs.Controllers
         {
             var user = await mediator.Send(command);
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
+        }
+
+        [HttpPost("login")]
+        [ProducesResponseType(typeof(UsersLoginResponse), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Login([FromBody] UsersLoginCommand command)
+        {
+            var user = await mediator.Send(command);
+            return Ok(user);
         }
 
 
