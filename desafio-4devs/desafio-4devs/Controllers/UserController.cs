@@ -33,14 +33,5 @@ namespace desafio_4devs.Controllers
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
-        [HttpPost("login")]
-        [ProducesResponseType(typeof(UsersLoginResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Login([FromBody] UsersLoginCommand command)
-        {
-            var user = await mediator.Send(command);
-            return Ok(user);
-        }
-
-
     }
 }
